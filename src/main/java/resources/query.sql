@@ -3,7 +3,6 @@
 -- insurance_id;insurance_name --
 
 
-
 CREATE TABLE insurances(
     insurance_id int,
     insurance_name varchar,

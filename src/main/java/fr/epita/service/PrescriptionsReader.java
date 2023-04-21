@@ -1,35 +1,45 @@
 package main.java.fr.epita.service;
 
-import java.io.FileNotFoundException;
+import main.java.fr.epita.model.Insurances;
+import main.java.fr.epita.model.Prescriptions;
+
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class PrescriptionsReader {
-    public static void main(String[] args){
-        try{
-            List<List<String>> dataList = new ArrayList<>();
-            String file = "/Users/bsnt/workspace/java_workspace/UMLandOOPS_2023f_tilak_basnet/src/main/java/resources/prescriptions.csv";
-            FileReader fileObj = new FileReader(file);
-            Scanner scannerObj = new Scanner(fileObj);
 
-            scannerObj.useDelimiter(";");
+    public List<String> list = new ArrayList<>();
+    public List<Prescriptions> prescriptionsList = new ArrayList<>();
 
-            while(scannerObj.hasNextLine()){
-                List<String> stringList = Arrays.asList(scannerObj.next().split(";"));//  new ArrayList<>();
-                dataList.add(stringList);
-            }
-            for(List<String> list : dataList){
-                for(String str : list){
-                    System.out.print(str + " ");
+    //presc_id;presc_ref_pat;presc_code;presc_days
+    public void prescriptionsReader() {
+        Prescriptions prescriptions = new Prescriptions();
+        String csvFile = "/Users/bsnt/workspace/java_workspace/UMLandOOPS_2023f_tilak_basnet/src/main/java/resources/insurances.csv";
+        String line;
+        int index = 0;
+
+        try(BufferedReader br = new BufferedReader(new FileReader(csvFile))){
+            while((line=br.readLine()) != null){
+                if(index == 0){
+                    index++;
+                    continue;
                 }
+                String[] word = line.split(";");
+                for(int i=0; i< word.length; i++){
+                    prescriptions.setPresc_id(Integer.parseInt(word[0]));
+                    prescriptions.setPresc_ref_pat(Long.valueOf(word[1]));
+                    prescriptions.setPresc_code(Integer.parseInt(word[2]));
+                    prescriptions.setPresc_days(Integer.parseInt(word[3]));
+                }
+                prescriptionsList.add(new Prescriptions(prescriptions.getPresc_id(),prescriptions.getPresc_ref_pat(),prescriptions.getPresc_code(),prescriptions.getPresc_days()));
+                list.add(prescriptions.toString());
+                index++;
             }
-            scannerObj.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        }catch (IOException e){
+            e.printStackTrace();
         }
-
     }
 }
