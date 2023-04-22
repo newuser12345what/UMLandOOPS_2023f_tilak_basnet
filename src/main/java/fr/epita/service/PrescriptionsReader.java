@@ -17,7 +17,7 @@ public class PrescriptionsReader {
     //presc_id;presc_ref_pat;presc_code;presc_days
     public void prescriptionsReader() {
         Prescriptions prescriptions = new Prescriptions();
-        String csvFile = "/Users/bsnt/workspace/java_workspace/UMLandOOPS_2023f_tilak_basnet/src/main/java/resources/insurances.csv";
+        String csvFile = "/Users/bsnt/workspace/java_workspace/UMLandOOPS_2023f_tilak_basnet/src/main/java/resources/prescriptions.csv";
         String line;
         int index = 0;
 
@@ -30,7 +30,7 @@ public class PrescriptionsReader {
                 String[] word = line.split(";");
                 for(int i=0; i< word.length; i++){
                     prescriptions.setPresc_id(Integer.parseInt(word[0]));
-                    prescriptions.setPresc_ref_pat(Long.valueOf(word[1]));
+                    prescriptions.setPresc_ref_pat(word[1]);
                     prescriptions.setPresc_code(Integer.parseInt(word[2]));
                     prescriptions.setPresc_days(Integer.parseInt(word[3]));
                 }

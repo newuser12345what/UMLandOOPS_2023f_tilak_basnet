@@ -3,14 +3,14 @@ package main.java.fr.epita.model;
 public class Prescriptions {
     // 6;2758965423102;1;2
     private int presc_id;
-    private  Long presc_ref_pat;
+    private String presc_ref_pat;
     private int  presc_code;
     private int presc_days;
 
     public Prescriptions() {
     }
 
-    public Prescriptions(int presc_id, Long presc_ref_pat, int presc_code, int presc_days) {
+    public Prescriptions(int presc_id, String presc_ref_pat, int presc_code, int presc_days) {
         this.presc_id = presc_id;
         this.presc_ref_pat = presc_ref_pat;
         this.presc_code = presc_code;
@@ -25,11 +25,11 @@ public class Prescriptions {
         this.presc_id = presc_id;
     }
 
-    public Long getPresc_ref_pat() {
+    public String getPresc_ref_pat() {
         return presc_ref_pat;
     }
 
-    public void setPresc_ref_pat(Long presc_ref_pat) {
+    public void setPresc_ref_pat(String presc_ref_pat) {
         this.presc_ref_pat = presc_ref_pat;
     }
 

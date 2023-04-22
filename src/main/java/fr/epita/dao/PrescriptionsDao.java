@@ -13,15 +13,15 @@ public class PrescriptionsDao {
         PrescriptionsReader prescriptionsReader = new PrescriptionsReader();
         prescriptionsReader.prescriptionsReader();
         //presc_id;presc_ref_pat;presc_code;presc_days
-        String query = "INSERT INTO MEDICATIONS(medication_code;medication_name;medication_comment) VALUES(?,?,?)";
+        String query = "INSERT INTO PRESCRIPTIONS(presc_id, presc_ref_pat, presc_code, presc_days) VALUES(?,?,?,?)";
         //Try to  Connection the postgres local database
         try (Connection conn = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "postgres")) {
             if (conn != null) {
                 for (Prescriptions prescriptions : prescriptionsReader.prescriptionsList) {
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
                     preparedStatement.setInt(1,prescriptions.getPresc_id());
-                    preparedStatement.setLong(2, prescriptions.getPresc_ref_pat());
-                    preparedStatement.setLong(3, prescriptions.getPresc_code());
+                    preparedStatement.setString(2, prescriptions.getPresc_ref_pat());
+                    preparedStatement.setInt(3, prescriptions.getPresc_code());
                     preparedStatement.setInt(4,prescriptions.getPresc_days());
                     preparedStatement.executeUpdate();
                 }
@@ -52,7 +52,7 @@ public class PrescriptionsDao {
                     // Fetch the data form the local database table and set value insurance_id, insurance_name varchar,
                     //presc_id;presc_ref_pat;presc_code;presc_days
                     prescriptions.setPresc_id(resultSet.getInt("presc_id"));
-                    prescriptions.setPresc_ref_pat(resultSet.getLong("presc_ref_pat"));
+                    prescriptions.setPresc_ref_pat(resultSet.getString("presc_ref_pat"));
                     prescriptions.setPresc_code(resultSet.getInt("presc_code"));
                     prescriptions.setPresc_days(resultSet.getInt("presc_days"));
 

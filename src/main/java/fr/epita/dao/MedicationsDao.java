@@ -39,7 +39,7 @@ public class MedicationsDao {
 
         ArrayList<String> list = new ArrayList<>();
 
-        String query= "SELECT * FROM MEDICATIONS";
+        String query= "SELECT * FROM MEDICATIONS ";
 
         //medication_code;medication_name;medication_comment
         try(Connection connection = DriverManager

@@ -1,7 +1,24 @@
 
--- This is Default Database --
--- insurance_id;insurance_name --
 
+CREATE TABLE patients (
+  pat_num_HC varchar,
+  pat_lastname varchar,
+  pat_firstname varchar,
+  pat_address varchar,
+  pat_tel varchar,
+  pat_insurance_id INTEGER,
+  pat_subscription_date varchar
+
+);
+
+
+INSERT INTO patients (pat_num_HC, pat_lastname, pat_firstname, pat_address, pat_tel, pat_insurance_id, pat_subscription_date)
+VALUES ('1234346', 'Doe', 'John', '123 Main St', '555-555-1212', 124345, '04-04-1990');
+
+
+select * from patients;
+
+-------------------********************--------------------
 
 CREATE TABLE insurances(
     insurance_id int,
@@ -17,6 +34,8 @@ insert into insurances values
 						(5,'APICIL');
 
 select * from insurances;
+
+
 
 -------------------********************--------------------
 
